@@ -14,14 +14,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="author" content="">
 
     <title><?php echo $title_page?></title>
-
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/style1.css">
     
+    
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/signIn.css">
+    <link rel="stylesheet" href="<?= base_url(); ?>assets/css/style1.css">    
+    
+    <!--Copiar para arquivo externo depois-->
     <style>
-    body {
-        padding-top: 70px;        
-    }
+    
     </style>   
 
 </head>

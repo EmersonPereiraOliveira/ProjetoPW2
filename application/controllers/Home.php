@@ -4,14 +4,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Home extends CI_Controller {
 	
     
+    public function verificarSessao(){
+        if($this->session->userData('logado') == false){
+            redirect("index.php/dashBoard/login");
+        }
+    }
     
     public function index(){       
        
-       $this->load->view("/usefulScreens/header");       
-       $this->load->view('login');               
-       $this->load->view("/usefulScreens/footer");
+       $this->verificarSessao();      
        
-       //$this->load->view('home');
+       $this->load->view('home');
        
     }
 }

@@ -5,9 +5,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php $this->load->view("/usefulScreens/sideBar"); ?>
 
-<div class="container-fluid col-md-9 col-md-offset-3" >
+<div class="col-md-9 col-sm-9" >
     <div class='col-md-10'>
-        <h1 class="page-header">Cadastrar Usuários</h1>
+        <h1 class="tituloMargem">Cadastrar Usuários</h1>
     </div>        
     <div class="col-md-2">
         <a class="btn btn-primary btn-block" href="<?= base_url(); ?>index.php/User/toRegister">Novo Usuário</a>

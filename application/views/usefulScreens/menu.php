@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="container-fluid navbar navbar-inverse navbar-fixed-top" role="navigation">
     
     <div class="container">            
         <div class="navbar-header">
@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <a class="navbar-brand" href="#">Inicial</a>
         </div>
 
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li>
                     <a href="#">Sobre</a>
@@ -26,6 +26,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </li>
                 <li>
                     <a href="#">Contato</a>
+                </li>
+                <li >
+                    <a href="<?= base_url()?>/index.php/DashBoard/logOut">LogOut?</a>
                 </li>
             </ul>
         </div>

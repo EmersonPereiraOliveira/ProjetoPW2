@@ -13,7 +13,15 @@ class User extends CI_Controller {
         
     }
     
+    public function verificarSessao(){
+        if($this->session->userData('logado') == false){
+            redirect("index.php/dashBoard/login");
+        }
+    }
+    
     public function searchRegistration($indice=NULL){ 
+                
+        $this->verificarSessao();
         
         $this->db->select('*');
         $data['user'] = $this->db->get('usuario')->result();
@@ -48,6 +56,8 @@ class User extends CI_Controller {
     
     public function toRegister(){       
         
+        $this->verificarSessao();
+        
         $this->load->view("/usefulScreens/header");
         $this->load->view("/usefulScreens/menu");
         $this->load->view("/user/userRegistration");
@@ -58,6 +68,8 @@ class User extends CI_Controller {
     public function saveRegistration(){       
                 
         //$this->load->library('database');
+        
+        $this->verificarSessao();
         
         $data['nome'] = $this->input->post('name');
         $data['cpf'] = $this->input->post('cpf');
@@ -80,6 +92,8 @@ class User extends CI_Controller {
     
     public function delete($id=NULL) {
         
+        $this->verificarSessao();
+        
         $this->db->where("id", $id);
         
         
@@ -92,6 +106,8 @@ class User extends CI_Controller {
     
     public function update($id=NULL) {
         
+        $this->verificarSessao();
+        
         $this->db->where("id", $id);        
         $data["usuario"] = $this->db->get('usuario')->result();
         
@@ -103,6 +119,8 @@ class User extends CI_Controller {
     
     
     public function saveUpdate() {
+        
+        $this->verificarSessao();
         
         $id = $this->input->post("id");
         
