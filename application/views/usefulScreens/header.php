@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/style1.css">
-
+    
     <style>
     body {
         padding-top: 70px;        

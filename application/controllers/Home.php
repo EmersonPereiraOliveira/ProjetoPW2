@@ -6,11 +6,12 @@ class Home extends CI_Controller {
     
     
     public function index(){       
-        
-        $dados = array(
-            'page_principal' => "body"                    
-        );
-        
-         $this->load->view('Home', $dados);
+       
+       $this->load->view("/usefulScreens/header");       
+       $this->load->view('login');               
+       $this->load->view("/usefulScreens/footer");
+       
+       //$this->load->view('home');
+       
     }
 }

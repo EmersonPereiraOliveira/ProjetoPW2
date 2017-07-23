@@ -1,0 +1,43 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+
+
+<?php $this->load->view("/usefulScreens/sideBar"); ?>
+
+<div class="container-fluid col-md-9 col-md-offset-3">
+    <div class='col-md-10'>
+        <h1 class="page-header">Usuários</h1>
+    </div>        
+    <div class="col-md-2">
+        <a class="btn btn-primary btn-block" href="<?= base_url(); ?>index.php/User/toRegister">Novo Usuário</a>
+    </div>
+    
+    <div class="col-md-12">
+        <table class="table table-striped">
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>E-mail</th>
+                <th>Nível</th>
+                <th>Status</th>
+                <th></th>
+                
+            </tr>
+
+            <?php foreach ($user as $u) { ?>                    
+
+                <tr>
+                    <td><?= $u->id; ?></td> 
+                    <td><?= $u->nome; ?></td> 
+                    <td><?= $u->email; ?></td> 
+                    <td><?= $u->nivel == 1 ? "Administrador" : "Usuário"; ?></td> 
+                    <td><?= $u->status == 1 ? "Ativo" : "Inativo"; ?></td> 
+                    <td><a href="<?= base_url('index.php/User/update/' . $u->id) ?>" class="btn btn-primary btn-group">Atualizar</a>
+                        <a href="<?= base_url('index.php/User/delete/' . $u->id) ?>" class="btn btn-danger btn-group" onclick="return confirm('Deseja realmente excluir?');">Remover</a></td>                         
+                </tr>
+            <?php } ?>                    
+        </table>
+    </div>
+</div>
+
