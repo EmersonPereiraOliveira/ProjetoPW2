@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
 
-<nav class="container-fluid navbar navbar-inverse navbar-fixed-top" role="navigation">
+<nav class="container-fluid navbar navbar-inverse navbar-fixed-top" >
     
     <div class="container">            
         <div class="navbar-header">

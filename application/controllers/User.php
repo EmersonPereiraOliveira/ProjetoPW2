@@ -7,9 +7,13 @@ class User extends CI_Controller {
     function __construct() {
         parent::__construct();
         
-        $this->load->helper('url');
-        //$this->load->helper('form');
+        $this->load->helper('url');        
+        $this->load->helper('form');
         //$this->load->library('form_validation');
+        //$this->load->helper('array');
+        //$this->load->library('session');
+        //$this->load->model('Usuario_model', 'UsuarioDAO');
+        //$this->load->library('table');
         
     }
     
@@ -26,7 +30,8 @@ class User extends CI_Controller {
         $this->db->select('*');
         $data['user'] = $this->db->get('usuario')->result();
 
-        $this->load->view("/usefulScreens/header");
+        $dados['title_page'] = "Listagem";
+        $this->load->view("/usefulScreens/header", $dados);                
         $this->load->view("/usefulScreens/menu");
                              
         if($indice==1){
@@ -58,16 +63,15 @@ class User extends CI_Controller {
         
         $this->verificarSessao();
         
-        $this->load->view("/usefulScreens/header");
+        $dados['title_page'] = "Cadastro";
+        $this->load->view("/usefulScreens/header", $dados);
         $this->load->view("/usefulScreens/menu");
         $this->load->view("/user/userRegistration");
         $this->load->view("/usefulScreens/footer");
         
     }
     
-    public function saveRegistration(){       
-                
-        //$this->load->library('database');
+    public function saveRegistration(){                             
         
         $this->verificarSessao();
         
@@ -76,9 +80,7 @@ class User extends CI_Controller {
         $data['email'] = $this->input->post('email');
         $data['senha'] = md5($this->input->post('password'));
         $data['status'] = $this->input->post('status');
-        $data['nivel'] = $this->input->post('level');
-        
-        //redirect("index.php/User/searchRegistration");
+        $data['nivel'] = $this->input->post('level');                
         
         
         if($this->db->insert('usuario', $data)){
@@ -111,7 +113,8 @@ class User extends CI_Controller {
         $this->db->where("id", $id);        
         $data["usuario"] = $this->db->get('usuario')->result();
         
-        $this->load->view("/usefulScreens/header");
+        $dados['title_page'] = "Listagem";
+        $this->load->view("/usefulScreens/header", $dados);        
         $this->load->view("/usefulScreens/menu");
         $this->load->view("/user/userEdit", $data);
         $this->load->view("/usefulScreens/footer");                
@@ -138,6 +141,25 @@ class User extends CI_Controller {
             redirect("index.php/User/searchRegistration/6");
         }
     }
+    
+    public function testForm(){               
+        
+        $dados['title_page'] = "Teste Listagem";
+        $this->load->view("/usefulScreens/header", $dados);        
+        $this->load->view("/usefulScreens/menu");
+        $this->load->view("/user/testForm");
+        $this->load->view("/usefulScreens/footer");  
+    
+        
+    }
+    
+    public function testFormRec(){
+        
+        $this->load->helper('form');
+        
+    }
+    
+    
     
     
    

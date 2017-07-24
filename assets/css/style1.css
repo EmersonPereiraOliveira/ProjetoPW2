@@ -1,5 +1,6 @@
 body{
-    padding-top: 70px;        
+    padding-top: 70px;
+    
 }   
     
 .tituloMargem {
@@ -7,3 +8,18 @@ body{
     margin-bottom: 30px;
     
 }
+
+.fitness{
+    margin: 0px;
+    border-radius: 10px;    
+}
+
+.loginTela{
+    width: 600px;
+    height: 300px;  
+    margin-top: 30px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 50px;
+}
+
+

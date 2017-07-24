@@ -10,11 +10,14 @@ class Home extends CI_Controller {
         }
     }
     
+    
     public function index(){       
        
        $this->verificarSessao();      
        
-       $this->load->view('home');
+       $dados['title_page'] = "Home";
+        $this->load->view("/usefulScreens/header", $dados);
+       $this->load->view('home', $dados);
        
     }
 }
