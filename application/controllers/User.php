@@ -2,18 +2,18 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class User extends CI_Controller {    
+class User extends CI_Controller{    
     
     function __construct() {
         parent::__construct();
         
         $this->load->helper('url');        
         $this->load->helper('form');
-        //$this->load->library('form_validation');
-        //$this->load->helper('array');
-        //$this->load->library('session');
-        //$this->load->model('Usuario_model', 'UsuarioDAO');
-        //$this->load->library('table');
+        $this->load->helper('array');
+        $this->load->library('session');
+        $this->load->library('form_validation');                        
+        $this->load->library('table');        
+        $this->load->model('User_model');
         
     }
     
@@ -151,12 +151,26 @@ class User extends CI_Controller {
         $this->load->view("/usefulScreens/footer");  
     
         
-    }
-    
-    public function testFormRec(){
+    }    
         
-        $this->load->helper('form');
+    public function create(){
         
+        $this->verificarSessao();
+        
+        $this->form_validation->set_rules('name','NAME','trim|required|max_length[100]|ucwords');        
+        //$this->form_validation->set_message('is_unique','Este %s já está cadastrado no sistema');
+        $this->form_validation->set_rules('email','EMAIL','trim|required|max_length[50]|strtolower|valid_email');//|is_unique[usuario.email]        
+        $this->form_validation->set_rules('cpf','CPF','trim|required|max_length[100]|ucwords');//Validar cpf        
+        $this->form_validation->set_rules('password','PASSWORD','trim|max_length[100]|required|strtolower');        
+        $this->form_validation->set_rules('level','LEVEL','trim|required|max_length[1]');        
+        $this->form_validation->set_rules('status','STATUS','trim|required|max_length[1]');                        
+        
+        if($this->form_validation->run()==TRUE){            
+            $dados = elements(array('name','email','cpf','password', 'level', 'status'),$this->input->post());
+            $dados['password'] = md5($dados['password']);			
+            $this->User_model->do_insert($dados);
+        }               
+                
     }
     
     

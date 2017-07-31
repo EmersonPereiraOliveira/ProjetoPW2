@@ -15,15 +15,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
     <div class="col-md-12">        
         <!-- Form Helper -->
-        <?= form_open("/index.php/User/formTestRec")?>
+        <?= form_open("/index.php/User/create")?>
             <!-- Carrega valores para o form_input-->
             <?php
+            
                 $name = array(
                     'type' => 'text',
                     'id' => 'name',
                     'name' => 'name',
                     'placeholder'=> 'Insira seu nome',
                     'class'=> 'form-control'
+                    //set_value('Valor')
                 );                
                 
                 $cpf = array(
@@ -51,18 +53,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 );
                 
                 $levelOptions = array(                    
-                    '0' => '',
+                    '0' => '---',
                     '1' => 'Administrador',
                     '2' => 'usuário'                    
                 );
                 
-                $level = array(                    
-                    '0' => '',
-                    '1' => 'Administrador',
-                    '2' => 'usuário'                    
+                $statusOptions = array(                    
+                    '0' => '---',
+                    '1' => 'Ativo',
+                    '2' => 'Inativo'                    
                 );
                 
+                $class = array(                    
+                    'class' => 'form-control'                                 
+                );
                 
+                $btnEnviar = array(                    
+                    'type' => 'submit',
+                    'value' => 'Enviar',
+                    'class' => 'btn btn-success'                    
+                );
+                                
+                $btnCancelar = array(                    
+                    'type' => 'reset',
+                    'value' => 'Cancelar',
+                    'class' => 'btn btn-default'                    
+                );
             ?>
         
         <div class="form-group">    
@@ -88,8 +104,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <div class="form-group col-md-2">    
                     <?= form_label('Nível', 'name')?>            
-                    <?= form_dropdown("level", $levelOptions, $level)?>            
+                    <?= form_dropdown('level', $levelOptions, '', $class)?>            
                 </div>
+                <div class="form-group col-md-2">    
+                    <?= form_label('Status', 'name')?>            
+                    <?= form_dropdown('status', $statusOptions, '', $class)?>            
+                </div>
+            </div>
+            
+            <div class='text-right col-md-12'>
+                <?= form_submit($btnEnviar)?>            
+                <?= form_reset($btnCancelar)?>                                            
             </div>
         
         <?= form_close()?>

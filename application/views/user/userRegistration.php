@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     
     <div class="col-md-12">
-        <form action="<?= base_url(); ?>index.php/User/saveRegistration" method="POST">
+        <form action="<?= base_url(); ?>index.php/User/create" method="POST">
             <div class='form-group'>
                 <label for="name">Nome</label>
                 <input type='text' class='form-control' id='name' name="name" placeholder="Insira seu nome" autofocus required>                    
