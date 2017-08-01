@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-
 <?php $this->load->view("/usefulScreens/sideBar"); ?>
 
 <div class="col-md-9 col-sm-9" >

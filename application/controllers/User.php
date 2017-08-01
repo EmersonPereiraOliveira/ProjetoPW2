@@ -23,6 +23,11 @@ class User extends CI_Controller{
         }
     }
     
+    
+    //
+    //Renomear para listUsers
+    //
+    
     public function searchRegistration($indice=NULL){ 
                 
         $this->verificarSessao();
@@ -59,6 +64,9 @@ class User extends CI_Controller{
         
     }    
     
+    //
+    //Registrar
+    //
     public function toRegister(){       
         
         $this->verificarSessao();
@@ -69,43 +77,14 @@ class User extends CI_Controller{
         $this->load->view("/user/userRegistration");
         $this->load->view("/usefulScreens/footer");
         
-    }
+    }        
     
-    public function saveRegistration(){                             
-        
-        $this->verificarSessao();
-        
-        $data['nome'] = $this->input->post('name');
-        $data['cpf'] = $this->input->post('cpf');
-        $data['email'] = $this->input->post('email');
-        $data['senha'] = md5($this->input->post('password'));
-        $data['status'] = $this->input->post('status');
-        $data['nivel'] = $this->input->post('level');                
-        
-        
-        if($this->db->insert('usuario', $data)){
-            redirect("index.php/User/searchRegistration/1");
-        }else{
-            redirect("index.php/User/searchRegistration/2");
-        } 
-         
-                 
-    }
     
-    public function delete($id=NULL) {
-        
-        $this->verificarSessao();
-        
-        $this->db->where("id", $id);
-        
-        
-        if($this->db->delete("usuario"))
-            redirect("index.php/User/searchRegistration/3");
-        else{
-            redirect("index.php/User/searchRegistration/4");
-        }
-    }
     
+    
+    //
+    //Corrigí-lo para usar o model
+    //
     public function update($id=NULL) {
         
         $this->verificarSessao();
@@ -120,7 +99,9 @@ class User extends CI_Controller{
         $this->load->view("/usefulScreens/footer");                
     }
     
-    
+    //
+    //Corrigí-lo para usar o model
+    //
     public function saveUpdate() {
         
         $this->verificarSessao();
@@ -140,25 +121,17 @@ class User extends CI_Controller{
         else{
             redirect("index.php/User/searchRegistration/6");
         }
-    }
+    }       
     
-    public function testForm(){               
-        
-        $dados['title_page'] = "Teste Listagem";
-        $this->load->view("/usefulScreens/header", $dados);        
-        $this->load->view("/usefulScreens/menu");
-        $this->load->view("/user/testForm");
-        $this->load->view("/usefulScreens/footer");  
-    
-        
-    }    
-        
+    //
+    //Create correto!
+    //
     public function create(){
         
         $this->verificarSessao();
         
         $this->form_validation->set_rules('name','NAME','trim|required|max_length[100]|ucwords');        
-        //$this->form_validation->set_message('is_unique','Este %s já está cadastrado no sistema');
+            //$this->form_validation->set_message('is_unique','Este %s já está cadastrado no sistema');
         $this->form_validation->set_rules('email','EMAIL','trim|required|max_length[50]|strtolower|valid_email');//|is_unique[usuario.email]        
         $this->form_validation->set_rules('cpf','CPF','trim|required|max_length[100]|ucwords');//Validar cpf        
         $this->form_validation->set_rules('password','PASSWORD','trim|max_length[100]|required|strtolower');        
@@ -169,13 +142,22 @@ class User extends CI_Controller{
             $dados = elements(array('name','email','cpf','password', 'level', 'status'),$this->input->post());
             $dados['password'] = md5($dados['password']);			
             $this->User_model->do_insert($dados);
-        }               
-                
+        }else{
+            redirect("index.php/User/searchRegistration/2");
+        }                               
     }
     
-    
-    
-    
-   
-    
+    //
+    //Corrigí-lo para usar o model
+    //
+    public function delete($id=NULL) {                                   
+        
+        $this->verificarSessao();                               
+        
+        if(($this->User_model->do_delete($id)) == TRUE){                
+            redirect("index.php/User/searchRegistration/3");
+        }else{
+            redirect("index.php/User/searchRegistration/4");
+        }
+    }
 }

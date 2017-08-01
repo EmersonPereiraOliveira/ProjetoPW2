@@ -30,12 +30,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 <tr>
                     <td><?= $u->id; ?></td> 
-                    <td><?= $u->nome; ?></td> 
+                    <td><?= $u->name; ?></td> 
                     <td><?= $u->email; ?></td> 
-                    <td><?= $u->nivel == 1 ? "Administrador" : "Usuário"; ?></td> 
+                    <td><?= $u->level == 1 ? "Administrador" : "Usuário"; ?></td> 
                     <td><?= $u->status == 1 ? "Ativo" : "Inativo"; ?></td> 
-                    <td><a href="<?= base_url('index.php/User/update/' . $u->id) ?>" class="btn btn-primary btn-group">Atualizar</a>
-                        <a href="<?= base_url('index.php/User/delete/' . $u->id) ?>" class="btn btn-danger btn-group" onclick="return confirm('Deseja realmente excluir?');">Remover</a></td>                         
+                    <td>
+                        <a href="<?= base_url('index.php/User/update/' . $u->id) ?>" class="btn btn-primary btn-group">Atualizar</a>
+                        <a href="<?= base_url('index.php/User/delete/' . $u->id) ?>" class="btn btn-danger btn-group" onclick="return confirm('Deseja realmente excluir?');">Remover</a>
+                    </td>                         
                 </tr>
             <?php } ?>                    
         </table>

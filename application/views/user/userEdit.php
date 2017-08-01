@@ -5,7 +5,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php $this->load->view("/usefulScreens/sideBar"); ?>
 
-<div class="container-fluid col-md-9 col-md-offset-3" >    
+<div class="col-md-9 col-sm-9" >   
     <div class='col-md-10'>
         <h1 class="page-header">Atualizar Usuário</h1>
     </div>        
@@ -20,7 +20,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             
             <div class='form-group'>
                 <label for="name">Nome</label>
-                <input type='text' class='form-control' id='name' name="name" placeholder="Insira seu nome" autofocus required value="<?= $usuario[0]->nome?>">                    
+                <input type='text' class='form-control' id='name' name="name" placeholder="Insira seu nome" autofocus required value="<?= $usuario[0]->name?>">                    
             </div>
 
             <div class='row'>

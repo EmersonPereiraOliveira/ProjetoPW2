@@ -30,6 +30,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <li >
                     <a href="<?= base_url()?>/index.php/DashBoard/logOut">LogOut?</a>
                 </li>
+                <li>
+                    <a href="<?= base_url()?>/index.php/DashBoard/index">DashBoard</a>
+                </li>
             </ul>
         </div>
     </div>
