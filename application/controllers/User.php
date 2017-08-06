@@ -20,11 +20,6 @@ class User extends CI_Controller{
         $this->load->model('User_model');                
     }
             
-    
-    //
-    //Renomear para listUsers
-    //
-    
     public function searchRegistration($indice=NULL){                         
         
         //Indice começado com 9 - identificador de usuario, ou instrutor
@@ -55,6 +50,7 @@ class User extends CI_Controller{
             $dados['button'] = "";
         }
             
+        
         $this->load->view("/usefulScreens/header", $dados);                
         $this->load->view("/usefulScreens/menu");
                              
