@@ -34,22 +34,25 @@ class User extends CI_Controller{
             $data['user'] = $this->db->get('usuario')->result();
             $dados['title_page'] = "Listagem de Usuários";
             $dados['title'] = "Usuários";
+            $dados['button'] = "Usuário";
         }elseif($indice==92){
             $this->db->where('level', '3');
             $this->db->select('*');
             $data['user'] = $this->db->get('usuario')->result();
             $dados['title_page'] = "Listagem de Instrutores";
             $dados['title'] = "Instrutores";
+            $dados['button'] = "Instrutor";
         }elseif($indice==93){            
             if($this->session->userData('lLevel') == 1){         
                 redirect("index.php/DashBoard");
             }
         }
             
-        if(($indice>0)||($indice<7)){
+        if(($indice>0)&&($indice<7)){  
             $data['user'] = $this->db->get('usuario')->result();
-            $dados['title_page'] = "Listagem de Usuários";
-            $dados['title'] = "Usuários";
+            $dados['title_page'] = "Listagem";
+            $dados['title'] = "Registro Efetuado";
+            $dados['button'] = "";
         }
             
         $this->load->view("/usefulScreens/header", $dados);                
@@ -87,8 +90,9 @@ class User extends CI_Controller{
     //
     public function toRegister(){                       
         
-        $dados['title_page'] = "Cadastro";
-        $dados['title'] = "Usuários";
+        $dados['title_page'] = "";
+        $dados['title'] = "";
+        $dados['button'] = "";
         $this->load->view("/usefulScreens/header", $dados);
         $this->load->view("/usefulScreens/menu");
         $this->load->view("/user/userRegistration", $dados);

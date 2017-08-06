@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <h1 class="tituloMargem">Cadastrar <?php echo $title?></h1>
     </div>        
     <div class="col-md-2">
-        <a class="btn btn-primary btn-block" href="<?= base_url(); ?>index.php/User/toRegister">Novo Usuário</a>
+        <a class="btn btn-primary btn-block" href="<?= base_url(); ?>index.php/User/toRegister">Novo <?php echo $button;?></a>
     </div>
     
     <div class="col-md-12">        

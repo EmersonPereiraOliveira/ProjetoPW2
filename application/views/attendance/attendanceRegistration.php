@@ -72,7 +72,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class='row'>                
                 <div class="form-group col-md-12">    
                     <?= form_label('Observações', 'name')?>            
-                    <?= form_password($description)?>            
+                    <?= form_textarea($description)?>            
                 </div>
                 <div class="form-group col-md-2">  
                     
