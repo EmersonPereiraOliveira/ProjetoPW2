@@ -75,6 +75,7 @@ class User extends CI_Controller{
             $this->load->view("/user/registrationNotDone", $data);
         }
         
+        
         $this->load->view("/user/listUsers", $data);
         $this->load->view("/usefulScreens/footer");
         
