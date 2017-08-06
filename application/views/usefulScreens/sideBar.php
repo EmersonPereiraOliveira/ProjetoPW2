@@ -12,15 +12,23 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </ul>
 
         <ul class="nav nav-navbar">
-            <li class="active"><a href="<?= base_url(); ?>index.php/User/searchRegistration">Usuários</a></li>
+            <li class="active"><a href="<?= base_url(); ?>index.php/User/searchRegistration/91">Usuários</a></li>
+        </ul>    
+        
+        <ul class="nav nav-navbar">
+            <li class="active"><a href="<?= base_url(); ?>index.php/User/searchRegistration/92">Instrutores</a></li>
         </ul>    
 
         <ul class="nav nav-navbar">
-            <li class="active"><a href="<?= base_url(); ?>index.php/User/searchRegistration">Horários</a></li>
-        </ul>         
+            <li class="active"><a href="<?= base_url(); ?>index.php/Attendance/listAttendances">Horários</a></li>
+        </ul>                
         
         <ul class="nav nav-navbar">
             <li class="active"><a href="<?= base_url(); ?>index.php/User/searchRegistration">Outros</a></li>
+        </ul> 
+        
+        <ul class="nav nav-navbar">
+            <li class="active"><a href="<?= base_url(); ?>index.php/User/searchRegistration/93">Administradores</a></li>
         </ul> 
     </div>
 </div>                            

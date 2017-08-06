@@ -13,18 +13,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title><?php echo $title_page?></title>
+    <title>Login</title>
     
     <link rel="javascript" href="../../../assets/jquery/jquery.js"> 
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/bootstrap.min.css">    
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/signIn.css">
     <link rel="stylesheet" href="<?= base_url(); ?>assets/css/style1.css">        
 
-    <?php         
-        if($this->session->userData('logado') == false){
-            redirect("index.php/IsLogged/login");
-        }        
-    ?>
+    
 </head>
 
 <body>

@@ -34,16 +34,15 @@ class DashBoard extends CI_Controller {
         
         //Condicional.. se o retorno do BD [e igual a variável
         $this->db->where('password', $passwd);
-        $this->db->where('email', $email);
-        $this->db->where('status', 1);
-        $this->db->where('level', 1);
+        $this->db->where('email', $email);        
         
         $data['usuario'] = $this->db->get('usuario')->result();
         
         if(count($data['usuario'])==1){
             
-            $dados['name'] = $data['usuario'][0]->name;
-            $dados['id'] = $data['usuario'][0]->id;
+            $dados['lId'] = $data['usuario'][0]->id;
+            $dados['lName'] = $data['usuario'][0]->name;            
+            $dados['lLevel'] = $data['usuario'][0]->level;
             $dados['logado'] = true;
             
             $this->session->set_userData($dados);

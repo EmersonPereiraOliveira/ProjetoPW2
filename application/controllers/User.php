@@ -7,55 +7,71 @@ class User extends CI_Controller{
     function __construct() {
         parent::__construct();
         
+        if($this->session->userData('logado') == false){
+            redirect("index.php/IsLogged/login");
+        }  
+        
         $this->load->helper('url');        
         $this->load->helper('form');
         $this->load->helper('array');
-        $this->load->library('session');
+        $this->load->library('session');                                
         $this->load->library('form_validation');                        
         $this->load->library('table');        
-        $this->load->model('User_model');
-        
+        $this->load->model('User_model');                
     }
-    
-    public function verificarSessao(){
-        if($this->session->userData('logado') == false){
-            redirect("index.php/dashBoard/login");
-        }
-    }
-    
+            
     
     //
     //Renomear para listUsers
     //
     
-    public function searchRegistration($indice=NULL){ 
-                
-        $this->verificarSessao();
+    public function searchRegistration($indice=NULL){                         
         
-        $this->db->select('*');
-        $data['user'] = $this->db->get('usuario')->result();
-
-        $dados['title_page'] = "Listagem";
+        //Indice começado com 9 - identificador de usuario, ou instrutor
+        if($indice==91){
+            $this->db->where('level', '2');
+            $this->db->select('*');
+            $data['user'] = $this->db->get('usuario')->result();
+            $dados['title_page'] = "Listagem de Usuários";
+            $dados['title'] = "Usuários";
+        }elseif($indice==92){
+            $this->db->where('level', '3');
+            $this->db->select('*');
+            $data['user'] = $this->db->get('usuario')->result();
+            $dados['title_page'] = "Listagem de Instrutores";
+            $dados['title'] = "Instrutores";
+        }elseif($indice==93){            
+            if($this->session->userData('lLevel') == 1){         
+                redirect("index.php/DashBoard");
+            }
+        }
+            
+        if(($indice>0)||($indice<7)){
+            $data['user'] = $this->db->get('usuario')->result();
+            $dados['title_page'] = "Listagem de Usuários";
+            $dados['title'] = "Usuários";
+        }
+            
         $this->load->view("/usefulScreens/header", $dados);                
         $this->load->view("/usefulScreens/menu");
                              
         if($indice==1){
-            $data['msg'] = "Usuário cadastrado com sucesso!";
+            $data['msg'] = "Registro cadastrado com sucesso!";
             $this->load->view("/user/registrationDone", $data);
         }else if($indice==2){
-            $data['msg'] = "Usuário não cadastrado!";            
+            $data['msg'] = "Registro não cadastrado!";            
             $this->load->view("/user/registrationNotDone", $data);
         }else if($indice==3) {
-            $data['msg'] = "Usuário excluido com sucesso!";
+            $data['msg'] = "Registro excluido com sucesso!";
             $this->load->view("/user/registrationDone", $data);
         }else if($indice==4) {
-            $data['msg'] = "Usuário não excluído!";            
+            $data['msg'] = "Registro não excluído!";            
             $this->load->view("/user/registrationNotDone", $data);
         }else if($indice==5) {
-            $data['msg'] = "Usuário atualizado com sucesso!";
+            $data['msg'] = "Registro atualizado com sucesso!";
             $this->load->view("/user/registrationDone", $data);
         }else if($indice==6) {
-            $data['msg'] = "Usuário não atualizado!";            
+            $data['msg'] = "Registro não atualizado!";            
             $this->load->view("/user/registrationNotDone", $data);
         }
         
@@ -64,30 +80,27 @@ class User extends CI_Controller{
         
     }    
     
+   
     //
     //Registrar
     //
-    public function toRegister(){       
-        
-        $this->verificarSessao();
+    public function toRegister(){                       
         
         $dados['title_page'] = "Cadastro";
+        $dados['title'] = "Usuários";
         $this->load->view("/usefulScreens/header", $dados);
         $this->load->view("/usefulScreens/menu");
-        $this->load->view("/user/userRegistration");
+        $this->load->view("/user/userRegistration", $dados);
         $this->load->view("/usefulScreens/footer");
         
     }        
     
     
     
-    
-    //
-    //Corrigí-lo para usar o model
-    //
-    public function update($id=NULL) {
+
+    public function update($id=NULL) {                
         
-        $this->verificarSessao();
+        
         
         $this->db->where("id", $id);        
         $data["usuario"] = $this->db->get('usuario')->result();
@@ -95,24 +108,30 @@ class User extends CI_Controller{
         $dados['title_page'] = "Listagem";
         $this->load->view("/usefulScreens/header", $dados);        
         $this->load->view("/usefulScreens/menu");
-        $this->load->view("/user/userEdit", $data);
+        
+        if($this->session->userData('lLevel') == 2){ 
+            $data['msg'] = "Você não tem permissão!";
+            $data['voltar'] = "<?= base_url(); ?>index.php/User/searchRegistration/91";
+            $data['endereco'] = "index.php/User/searchRegistration/91";
+            $this->load->view("/user/registrationNotDone", $data);                
+        }else
+            $this->load->view("/user/userEdit", $data);
+        
         $this->load->view("/usefulScreens/footer");                
     }
     
     //
     //Corrigí-lo para usar o model
     //
-    public function saveUpdate() {
-        
-        $this->verificarSessao();
+    public function saveUpdate() {                
         
         $id = $this->input->post("id");
         
-        $data['nome'] = $this->input->post('name');
+        $data['name'] = $this->input->post('name');
         $data['cpf'] = $this->input->post('cpf');
         $data['email'] = $this->input->post('email');        
         $data['status'] = $this->input->post('status');
-        $data['nivel'] = $this->input->post('level');
+        $data['level'] = $this->input->post('level');
         
         $this->db->where("id", $id);
         
@@ -126,12 +145,9 @@ class User extends CI_Controller{
     //
     //Create correto!
     //
-    public function create(){
+    public function create(){               
         
-        $this->verificarSessao();
-        
-        $this->form_validation->set_rules('name','NAME','trim|required|max_length[100]|ucwords');        
-            //$this->form_validation->set_message('is_unique','Este %s já está cadastrado no sistema');
+        $this->form_validation->set_rules('name','NAME','trim|required|max_length[100]|ucwords');                    
         $this->form_validation->set_rules('email','EMAIL','trim|required|max_length[50]|strtolower|valid_email');//|is_unique[usuario.email]        
         $this->form_validation->set_rules('cpf','CPF','trim|required|max_length[100]|ucwords');//Validar cpf        
         $this->form_validation->set_rules('password','PASSWORD','trim|max_length[100]|required|strtolower');        
@@ -150,14 +166,21 @@ class User extends CI_Controller{
     //
     //Corrigí-lo para usar o model
     //
-    public function delete($id=NULL) {                                   
+    public function delete($id=NULL) {                                                                          
         
-        $this->verificarSessao();                               
-        
-        if(($this->User_model->do_delete($id)) == TRUE){                
-            redirect("index.php/User/searchRegistration/3");
-        }else{
-            redirect("index.php/User/searchRegistration/4");
+        if($this->session->userData('lLevel') == 2){ 
+            $this->load->view("/usefulScreens/header"); 
+            $this->load->view("/usefulScreens/menu");
+            $data['msg'] = "Você não tem permissão!";
+            $data['voltar'] = "<?= base_url(); ?>index.php/User/searchRegistration/91";
+            $data['endereco'] = "index.php/User/searchRegistration/91";
+            $this->load->view("/user/registrationNotDone", $data);                
+        }else{        
+            if(($this->User_model->do_delete($id)) == TRUE){                
+                redirect("index.php/User/searchRegistration/3");
+            }else{
+                redirect("index.php/User/searchRegistration/4");
+            }
         }
     }
 }

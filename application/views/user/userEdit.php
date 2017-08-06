@@ -58,6 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <option value='0'>---</option>
                         <option value='1' <?= $usuario[0]->status==1?' selected':''?>>Administrador</option>
                         <option value='2' <?= $usuario[0]->status==2?' selected':''?>>Usuário</option>                                                        
+                        <option value='3' <?= $usuario[0]->status==3?' selected':''?>>Instrutor</option>                                                        
                     </select>
                 </div>
             </div>

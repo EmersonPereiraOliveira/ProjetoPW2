@@ -1,7 +1,7 @@
 <div class="container-fluid login" >
     <div class="container col-md-3 col-md-offset-3 loginTela" style="background-color:#FF0000">
 
-        <form class="form-signin" method="POST" action="<?= base_url() ?>index.php/DashBoard/logar">
+        <form class="form-signin" method="POST" action="<?= base_url() ?>index.php/IsLogged">
             <h2 class="form-signin-heading ">Entrar</h2>
             <label for="inputEmail" class="sr-only">Email</label>
             <input type="email" id="email" name="email" class="form-control" placeholder="Email" required autofocus>

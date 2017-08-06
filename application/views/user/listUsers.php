@@ -32,7 +32,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <td><?= $u->id; ?></td> 
                     <td><?= $u->name; ?></td> 
                     <td><?= $u->email; ?></td> 
-                    <td><?= $u->level == 1 ? "Administrador" : "Usuário"; ?></td> 
+                    <!--Refazer isso aqui, mostrar administrador-->                    
+                    <!--Refazer isso aqui, mostrar administrador-->                            
+                    <td><?= $u->level == 2 ? "Usuário" : "Instrutor"; ?></td> 
                     <td><?= $u->status == 1 ? "Ativo" : "Inativo"; ?></td> 
                     <td>
                         <a href="<?= base_url('index.php/User/update/' . $u->id) ?>" class="btn btn-primary btn-group">Atualizar</a>
