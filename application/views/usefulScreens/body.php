@@ -2,14 +2,9 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 
-
+<div style="background-image: url(<?= base_url()?>/assets/img/fitness.jpg" class="img-responsive" class="fitness)">
 <?php $this->load->view('/usefulScreens/header'); ?>
   
-<div>
-    <div>
-        <img src="<?= base_url()?>/assets/img/fitness.jpg" class="img-responsive" class="fitness">
-    </div>
-</div>
 
     <?php $this->load->view('/usefulScreens/sideBar'); ?>
 
@@ -21,3 +16,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
 
+
+    <div>
+        <img src="<?= base_url()?>/assets/img/fitness.jpg" class="img-responsive" class="fitness">
+    </div>
+</div>

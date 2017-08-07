@@ -14,12 +14,27 @@ body{
     border-radius: 10px;    
 }
 
+.icone{
+     width: 600px;
+    height: 300px;  
+    margin-top: 30px;
+    background-color: aliceblue;
+    border-radius: 50px;
+}
+
 .loginTela{
     width: 600px;
     height: 300px;  
     margin-top: 30px;
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: aliceblue;
     border-radius: 50px;
 }
 
+.footer{
+    width: 600px;
+    height: 300px;  
+    margin-top: 30px;
+    background-color: aliceblue;
+    border-radius: 50px;
 
+}
